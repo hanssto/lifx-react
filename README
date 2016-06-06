@@ -1,0 +1,30 @@
+React frontend for the LIFX API
+
+This is a bit of an exploration project, so it's quite rough around the edges.
+I don't own a light, so I'm just working from reading the docs, probably
+missing details along the way.
+
+See:
+  https://api.developer.lifx.com/docs/introduction
+
+For now, the server API is mocked in JavaScript on the client side in:
+  app/scripts/backends.js:MemoryBackend.
+
+The mock provides a locked set of data which is reloaded on each run. It's also
+greatly simplified, supporting only parts of the functionality and, for example,
+not handling authentication, rate limiting or concurrency in any particular way.
+
+Running the app should be as straightforward as opening
+  app/index.html
+in a browser.
+
+You may need to disable restrictions on doing XHR in the file system, e.g.:
+  chromium-browser --allow-file-access-from-files
+
+
+Plans, if I get around to it:
+* A dummy API server implemented in Python. Have a stupid prototype in Flask.
+* A JS backend which communicates with the above.
+* Mange the JS dependencies with whatever is in fashion today.
+* A proper implementation against the real API, if I ever buy one of these
+  things.

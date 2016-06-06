@@ -1,0 +1,37 @@
+body {
+    background-color: beige;  /* Because why not. */
+    font-family: sans-serif;
+    font-size: 2em;
+}
+
+select {
+    font-size: 1em;
+}
+
+#content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+    padding: 20px;
+}
+
+.bulb {
+    width: 200px;
+    height: 200px;
+    margin: 20px auto 20px auto;
+    border: 2px double lightgray;
+    border-radius: 50%;  /* Rounded corners make everything better. */
+    background-position: center;
+    background-size: 25%;
+    background-repeat: no-repeat;
+}
+.bulb.off {
+    background-color: gray;
+    box-shadow: 0;
+    background-image: url(../images/power-thick.svg);
+}
+.bulb.on {
+    /* We can't set the box-shadow color partially,
+       so all of it is set through JS. */
+    background-image: url(../images/power-thin.svg);
+}
