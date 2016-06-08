@@ -2,3 +2,4 @@ Flask==0.11
 # TODO Split into dev/test/prod
 requests==2.10.0
 nose==1.3.7
+mock==2.0.0
