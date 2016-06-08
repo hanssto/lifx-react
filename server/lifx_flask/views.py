@@ -10,7 +10,7 @@ from .validators import (
     validate_selector,
     validate_state,
 )
-from .utils import default_headers, to_json_response
+from .utils import default_headers, to_json_response, get_light_or_404
 
 
 def lights(selector):
@@ -32,7 +32,7 @@ def lights(selector):
     if prop != "all":
         raise NotImplemented("Unsupported selector %s" % selector)
 
-    return json.dumps(lightData.values()), 
+    return json.dumps(lightData.values()), default_headers
 
 
 def toggle(selector):
@@ -55,21 +55,21 @@ def toggle(selector):
     prop, value = validate_selector(selector)
 
     if prop != "id":
-        raise exceptions.NotImplemented(
+        raise NotImplemented(
             "Selector type %s not implemented" % prop)
 
-    light = get_light_or_404(prop)
+    light = get_light_or_404(value)
 
     power = light["power"]
     light["power"] = "off" if power == "on" else "on" 
 
     response_data = {
-        "id": light.id,
-        "label": light.label,
+        "id": light["id"],
+        "label": light["id"],
         "status": "ok", 
     }
 
-    return to_json_response(response_data), default_headers
+    return to_json_response(response_data)
 
 
 def state(selector):
@@ -112,8 +112,8 @@ def state(selector):
         light[field] = cleaned_state[field]
 
     response_data = {
-        "id": light.id,
-        "label": light.label,
+        "id": light["id"],
+        "label": light["label"],
         "status": "ok", 
     }
 
